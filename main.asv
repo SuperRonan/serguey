@@ -1,0 +1,24 @@
+folder = 'data/alleia/';
+
+
+channels = load_channels(folder);
+
+[p,q] = best_translation_IM(channels{1}, channels{2}, 5);
+
+
+channels{4} = cat(3, channels{1}, channels{2}, channels{3});
+
+figure;
+
+for i=1: 4
+    subplot(2, 2, i);
+    imshow(channels{i});
+end
+
+imwrite(channels{4}, strcat(folder, 'rgb.png'));
+
+
+pyramids = compute_pyramids(channels, 4);
+
+
+
