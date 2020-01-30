@@ -6,7 +6,6 @@ channels = load_channels(folder);
 
 channels{4} = cat(3, channels{1}, channels{2}, channels{3});
 
-figure;
 
 
 
@@ -19,7 +18,7 @@ channels{4} = cat(3, channels{1}, translation(channels{2}, p_g, q_g), translatio
 
 imwrite(channels{4}, strcat(folder, 'rgb_recale_IM.png'));
 
-
+figure;
 for i=1:4
     subplot(2, 2, i);
     imshow(channels{i});
