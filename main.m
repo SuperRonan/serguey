@@ -1,5 +1,5 @@
 clear all; clf;
-folder = 'data/khan/';
+folder = 'data/church/';
 
 channels = load_channels(folder);
 
