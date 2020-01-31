@@ -11,14 +11,25 @@ function [best_p, best_q, best_a, best_s] = best_transform(I, Y, range_p, range_
             for p = -range_p/2:range_p/2
                 for q = -range_q/2:range_q/2
                     %fprintf('%d/%d/%d/%d\n',s,a,p,q);
-                    if(type=='im')
+                    if strcmpi(type, 'im')
                         index = 1;
                         tmp = rigid_transformation(Y{index},start_p+p,start_q+q, start_a +a, 1);
                         score = mutual_information(hist2(I{index}, tmp));
-                    else
+                    elseif strcmpi(type, 'fmesure') || strcmpi(type, 'intersection') || strcmpi(type, 'union') || strcmpi(type, 'precision') || strcmpi(type, 'precision')
                         index = 2;
                         tmp = rigid_transformation(Y{index},start_p+p,start_q+q, start_a +a, 1);
-                        score = image_intersection(I{index},tmp);
+                        [inter, union, precision, recall, fmesure] = logical_metrics(I{index}, tmp);
+                        if(strcmpi(type, 'fmesure'))
+                            score = fmesure;
+                        elseif strcmpi(type, 'intersection')
+                            score = inter;
+                        elseif strcmpi(type, 'union')
+                            score = union;
+                        elseif strcmpi(type, 'precision')
+                            score = precision;
+                        elseif strcmpi(type, 'recall')
+                            score = recall;
+                        end
                     end
                     
                     if score > best_score

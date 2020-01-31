@@ -41,7 +41,7 @@ end
 function [p_g, q_g, p_b, q_b, a_g,  a_b, s_g, s_b] = recalage_transform(pyramids, type)
     [range_p, range_q] = size(pyramids{1}{end}{1});
     range_s = 0.5;
-    range_a = pi;
+    range_a = pi/2;
     
     p_g = 0; q_g = 0; p_b = 0;q_b = 0; start_q_g = 0; start_p_g = 0; start_q_b = 0; start_p_b = 0;
     a_g =0; a_b =0; start_a_g = 0; start_a_b = 0;
