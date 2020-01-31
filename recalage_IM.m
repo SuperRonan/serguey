@@ -9,8 +9,8 @@ function [p_g, q_g, p_b, q_b] = recalage_IM(pyramids)
         start_q_g = 2*q_g;
         start_p_b = 2*p_b;
         start_q_b = 2*q_b;
-        range_p = 2;
-        range_q = 2;
+        range_p = 4;
+        range_q = 4;
     end
     
 end
