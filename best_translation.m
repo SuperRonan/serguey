@@ -36,9 +36,11 @@ function [best_p, best_q, best_a, best_s] = best_translation(I, Y, range_p, rang
             end
             
             if score > best_score
+                disp(score);
                 best_score = score;
                 best_p = p + start_p;
                 best_q = q + start_q;
+                imshow(I{index}*0.5 + tmp*0.5);
             end
         end
     end

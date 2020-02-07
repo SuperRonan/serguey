@@ -15,7 +15,7 @@ function [best_p, best_q, best_a, best_s] = best_transform(I, Y, range_p, range_
                         index = 1;
                         tmp = rigid_transformation(Y{index},start_p+p,start_q+q, start_a +a, 1);
                         score = mutual_information(hist2(I{index}, tmp));
-                    elseif strcmpi(type, 'fmesure') || strcmpi(type, 'intersection') || strcmpi(type, 'union') || strcmpi(type, 'precision') || strcmpi(type, 'precision')
+                    elseif strcmpi(type, 'fmesure') || strcmpi(type, 'intersection') || strcmpi(type, 'union') || strcmpi(type, 'precision') || strcmpi(type, 'recall')
                         index = 2;
                         tmp = rigid_transformation(Y{index},start_p+p,start_q+q, start_a +a, 1);
                         [inter, union, precision, recall, fmesure] = logical_metrics(I{index}, tmp);

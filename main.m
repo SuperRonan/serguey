@@ -2,11 +2,11 @@ clear all; clf;
 %% parameters
 folder = 'data/garden/'; %what image
 
-arg_pyramid = 50;
+arg_pyramid = 60;
 construct_until = 'minres'; % = 'minres' => arg_pyramid is the minimum resolution, else => arg_pyramid is the depth
 
-similarity = 'union'; % 'im' or 'intersection' or 'union' or 'precision' or 'recall' or 'fmesure'(of edges)
-dof = 'translation'; % full or translation
+similarity = 'im'; % 'im' or 'intersection' or 'union' or 'precision' or 'recall' or 'fmesure'(of edges)
+dof = 'full'; % full or translation
 
 %% load images
 channels = load_channels(folder);
