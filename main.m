@@ -1,6 +1,6 @@
 clear all; clf;
 %% parameters
-folder = 'data/garden/'; %what image
+folder = 'data/factory/'; %what image
 
 arg_pyramid = 60;
 construct_until = 'minres'; % = 'minres' => arg_pyramid is the minimum resolution, else => arg_pyramid is the depth
@@ -37,8 +37,7 @@ channels{4} = cat(3, channels{1}, translation(channels{2}, p_g, q_g), translatio
 cropped_channels{4} = cat(3, cropped_channels{1}, translation(cropped_channels{2}, p_g, q_g), translation(cropped_channels{3}, p_b, q_b));
 
 %% write in file
-imwrite(channels{4}, strcat(folder, 'rgb_recale_IM.png'));
-
+imwrite(channels{4}, strcat(folder, 'rgb_',similarity,'_',dof,'_',int2str(arg_pyramid), '.png'));
 
 %% display
 figure;
