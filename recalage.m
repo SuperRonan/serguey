@@ -26,15 +26,15 @@ function [p_g, q_g, p_b, q_b, a_g,  a_b, s_g, s_b] = recalage_translation(pyrami
     for depth = numel(pyramids{1}):-1:1
         disp(depth);
         
-        [p_g, q_g] = best_translation(pyramids{1}{depth}, pyramids{2}{depth}, range_p, range_q, start_p_g, start_q_g, type);
-        [p_b, q_b] = best_translation(pyramids{1}{depth}, pyramids{3}{depth}, range_p, range_q, start_p_b, start_q_b, type);
-        
+        [p_g, q_g] = best_translation(pyramids{1}{depth}, pyramids{2}{depth}, range_p, range_q, start_p_g, start_q_g, type, depth, 'g');
+        [p_b, q_b] = best_translation(pyramids{1}{depth}, pyramids{3}{depth}, range_p, range_q, start_p_b, start_q_b, type, depth, 'b');
         start_p_g = 2*p_g;
         start_q_g = 2*q_g;
         start_p_b = 2*p_b;
         start_q_b = 2*q_b;
         range_p = 4;
         range_q = 4;
+        
     end
     a_g =0; a_b =0; s_g = 1; s_b = 1;
     
@@ -45,7 +45,7 @@ function [p_g, q_g, p_b, q_b, a_g,  a_b, s_g, s_b] = recalage_transform(pyramids
     range_p = range_p/10;
     range_q = range_q/10;
     range_s = 0.5;
-    range_a = pi/8;
+    range_a = pi/16;
     
     p_g = 0; q_g = 0; p_b = 0;q_b = 0; start_q_g = 0; start_p_g = 0; start_q_b = 0; start_p_b = 0;
     a_g =0; a_b =0; start_a_g = 0; start_a_b = 0;

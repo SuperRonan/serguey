@@ -1,8 +1,12 @@
 % computes (p,q) = argmin IM(I(x,y), Y(x+p, y+q))
-function [best_p, best_q, best_a, best_s] = best_translation(I, Y, range_p, range_q, start_p, start_q, type)
+function [best_p, best_q, best_a, best_s] = best_translation(I, Y, range_p, range_q, start_p, start_q, type, depth, channel)
     best_p = 0;
     best_q = 0;
     best_score = 0;
+%     tmp = translation(Y{1},start_p,start_q);
+%     image = I{1}*0.5 + tmp*0.5;
+%     name = strcat('data/steps_khan/',channel, int2str(depth), '.png');
+%     imwrite(image, name);
     for p = -range_p/2:range_p/2
         for q = -range_q/2:range_q/2
             
@@ -40,10 +44,14 @@ function [best_p, best_q, best_a, best_s] = best_translation(I, Y, range_p, rang
                 best_score = score;
                 best_p = p + start_p;
                 best_q = q + start_q;
-                imshow(I{index}*0.5 + tmp*0.5);
+                imshow(I{index} * 0.5 + tmp*0.5,[]);
             end
         end
     end
+    %tmp = translation(Y{1},best_p, best_q);
+    %image = I{1}*0.5 + tmp*0.5;
+    %name = strcat('data/steps_khan/',channel, int2str(depth), '_registered.png');
+    %imwrite(image, name);
     best_a = 0.0;
     best_s=1.0;
 

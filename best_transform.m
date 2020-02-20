@@ -38,7 +38,6 @@ function [best_p, best_q, best_a, best_s] = best_transform(I, Y, range_p, range_
                         best_p = p + start_p;
                         best_q = q + start_q;
                         best_a = a + start_a;
-                        
                         imshow(I{index}*0.5 + tmp*0.5);
                         %best_s = s + start_s;
                     end

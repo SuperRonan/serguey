@@ -1,14 +1,14 @@
 clear all; clf;
 warning('off', 'Images:initSize:adjustingMag');
 %% parameters
-folder = 'data/garden/'; %what image
+folder = 'data/factory/'; %what image
 
 arg_pyramid = 60;
-construct_until = 'minres'; % = 'minres' => arg_pyramid is the minimum resolution, else => arg_pyramid is the depth
+construct_until = 'minres'; % = 'minres' => arg_pyramid is the minimum resolution, else => arg_pyramid is the depth of the pyramid
 
 similarity = 'im'; % 'im' or 'intersection' or 'union' or 'precision' or 'recall' or 'fmesure'(of edges)
-
-dof = 'full'; % full or translation
+    
+dof = 'full'; % 'full' (trans + rot) or 'translation' (translation only)
 
 do_demons = true;
 
@@ -21,10 +21,6 @@ for i = 1:3
 end
 
 channels{4} = cat(3, channels{1}, channels{2}, channels{3});
-%channels{2} = rigid_transformation(channels{2}, 0, 0, -pi/5, 1);
-%channels{3} = rigid_transformation(channels{3}, 0, 10, pi/5, 1);
-
-
 %imwrite(channels{4}, strcat(folder, 'rgb_naive.png'));
 
 %% construct pyramid
@@ -42,8 +38,7 @@ channels{3} = b_registered;
 cropped_channels{4} = cat(3, cropped_channels{1}, translation(cropped_channels{2}, p_g, q_g), translation(cropped_channels{3}, p_b, q_b));
 
 %% write in file
-imwrite(channels{4}, strcat(folder, 'rgb_recale_IM.png'));
-
+imwrite(channels{4}, strcat(folder, 'rgb_',similarity,'_',dof,'_',int2str(arg_pyramid), '.png'));
 
 %% display
 figure;
