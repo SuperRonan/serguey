@@ -14,13 +14,13 @@ function [res, sx, sy, vx, vy] = demons(ref, moving)
     do_display      = 1;   % display iterations
 
     %% Load fixed image
-    F = double(imread(ref));          % fixed   image
+    F = double(ref);          % fixed   image
     %F = double(imread('statue-rio.png'));           % fixed   image
     F = imresize(F,0.5);
     F = 256*(F-min(F(:)))/range(F(:));              % normalize intensities
 
     %% Load moving image
-    M = double(imread(moving));          % moving  image
+    M = double(moving);          % moving  image
     %M = double(imread('statue-rio-deformed.png'));  % moving  image
     M = imresize(M,0.5);
     M = 256*(M-min(M(:)))/range(M(:));              % normalize intensities
@@ -312,8 +312,8 @@ function e = energy(F,M,sx,sy,sigma_i,sigma_x)
     e_sim  = sum(diff2(:)) / area;
     %e_dist = sum((cx(:)-sx(:)).^2 + (cy(:)-sy(:)).^2) / area;
     e_reg = sum(jac(:).^2) / area;
-    
-    H = hist2(Mp, F);
+    %H = hist2(uint8(F), uint8(Mp));
+    %mutim = mutual_information(H);
     
     % Total energy
     e      = e_sim + (sigma_i^2/sigma_x^2) * e_reg;

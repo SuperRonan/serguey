@@ -1,9 +1,16 @@
-function channels = load_channels(folder)
+function channels = load_channels(folder, scale)
+if nargin == 1
+    scale = 1;
+end
     channels = {};
     channels{1} = imread(strcat(folder, 'r.png'));
     channels{2} = imread(strcat(folder, 'g.png'));
     channels{3} = imread(strcat(folder, 'b.png'));
-
+if scale ~= 1
+    for i=1:numel(channels)
+        channels{i} = imresize(channels{i}, scale);
+    end
+end
     for i=1:3
         channel = channels{i};
         if size(channel, 3) == 3

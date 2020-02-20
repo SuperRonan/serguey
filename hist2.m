@@ -4,8 +4,10 @@ function H=hist2(A,B)
 
 H = zeros(256,256);
 for k=1:numel(A)
-    i = B(k)+1;
-    j = A(k)+1;
+    i = B(k);
+    i = i+1;
+    j = A(k);
+    j = j+1;
     H(i,j) = H(i,j)+1;
 end
 
